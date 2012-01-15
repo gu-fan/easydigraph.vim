@@ -26,7 +26,7 @@
     Default mapping is '<c-x><c-b>'
     You can remap it by changing |g:EasyDigraph_imap|
     
-looking at |:digraph| and |digraph-default| for digraph details.
+looking at |:digraph| and |digraphs-default| for digraph details.
 
 You can post issues at https://github.com/Rykka/easydigraph.vim/
 
