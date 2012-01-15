@@ -1,6 +1,6 @@
 ## Intro ##
 
-**EasyDigraph** is for input special characters with |:digraph| easier.
+**EasyDigraph** makes input special characters with |:digraph| easier.
     
     Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
     everytime when input the digraphs.
@@ -26,6 +26,7 @@
     Default mapping is '<c-x><c-b>'
     You can remap it by changing |g:EasyDigraph_imap|
     
-    looking at |:digraph| and |digraph-default| for digraph details.
+looking at |:digraph| and |digraph-default| for digraph details.
 
-You can post issues at https://github.com/Rykka/EasyDigraph/
+You can post issues at https://github.com/Rykka/easydigraph.vim/
+
