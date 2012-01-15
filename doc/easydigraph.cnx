@@ -43,13 +43,22 @@ INTRO                                               *easydigraph-intro*
     即，在 'αβξδε' 上按键将不会使其产生变化。
     
     同时，还有一个插入模式下的快捷键。
-    它将改变当前的WORD。
+    功能为改变当前的WORD。
     默认映射为'<c-x><c-b>'
     可以使用|g:EasyDigraph_imap|重新定义
     
+    一个可视模式下的快捷键。
+    功能为改变当前的高亮区域。
+    默认映射为'<c-b>'
+    可以使用|g:EasyDigraph_vmap|重新定义
+
     查看 |:digraph| 和 |digraphs-default| 以了解更多。
 
     有问题请到发布到 https://github.com/Rykka/easydigraph.vim/ 
+
+    已知问题：
+        1. 多行转换可能会造成第一行错位。
+        2. 多行转换，有时返回的字符串会和原字符串混淆。
     
 ==============================================================================
 INSTALL                                             *easydigraph-install*
@@ -69,6 +78,10 @@ OPTION                                              *easydigraph-option*
     g:EasyDigraph_imap                              *g:EasyDigraph_imap*
     ':EasyDigraph<CR>aW' 插入模式下的映射
     默认为 "<c-x><c-b>"
+
+    g:EasyDigraph_vmap                              *g:EasyDigraph_vmap*
+    ':EasyDigraphV<CR>' 可视模式下的映射
+    默认为 "<c-b>"
 
     g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
     :EasyDigraph 普通模式下的映射

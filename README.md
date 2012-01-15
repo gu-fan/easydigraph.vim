@@ -18,15 +18,25 @@
     <leader>bbaW on '(s8s+s3s)s' will convert it to SubScript '₍₈₊₃₎'
 
     And it will automatically igonre converted characters.
-    That is, It will only convert the characters between ASCII 33~127
+    That is, It will only convert the characters between ASCII 33~126
     so press shortcut on 'αβξδε' will make no change on it.
     
-    There is also a hotkey in insert mode.
-    it will change the current WORD.
+    There is also a mapping in insert mode.
+    it's function is change the current WORD.
     Default mapping is '<c-x><c-b>'
     You can remap it by changing |g:EasyDigraph_imap|
+    
+    A Mapping in Visual Mode.
+    Function is change current highlight area.
+    Default mapping is '<c-b>'
+    You can remap it by changing |g:EasyDigraph_vmap|
+
     
 looking at |:digraph| and |digraphs-default| for digraph details.
 
 You can post issues at https://github.com/Rykka/easydigraph.vim/
 
+Know Issues:
+
+    1. MultiLine action may make the first in a wrong place. 
+    2. Multiline action may mix the returned string with origin ones.

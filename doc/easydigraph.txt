@@ -27,8 +27,8 @@ INTRO                                               *easydigraph-intro*
     
     Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
 everytime when input the digraphs.
-    With EasyDigraph, you can use |:EasyDigraph| with motion to convert characters to 
-digraphs.
+    With EasyDigraph, you can use |:EasyDigraph| with motion to convert
+characters to digraphs.
 
     Default mapping is '<leader>bb'
     You can remap it by changing |g:EasyDigraph_nmap|
@@ -44,14 +44,23 @@ digraphs.
     That is, It will only convert the characters between ASCII 33~126
     so press shortcut on 'αβξδε' will make no change on it.
     
-    There is also a hotkey in insert mode.
-    it will change the current WORD.
+    There is also a mapping in insert mode.
+    it's function is change the current WORD.
     Default mapping is '<c-x><c-b>'
     You can remap it by changing |g:EasyDigraph_imap|
+    
+    A Mapping in Visual Mode.
+    Function is change current highlight area.
+    Default mapping is '<c-b>'
+    You can remap it by changing |g:EasyDigraph_vmap|
     
     looking at |:digraph| and |digraphs-default| for digraph details.
 
     You can post issues at https://github.com/Rykka/easydigraph.vim/
+    
+    Know Issues:
+        1. MultiLine action may make the first in a wrong place. 
+        2. Multiline action may mix the returned string with origin ones.
     
 ==============================================================================
 INSTALL                                             *easydigraph-install*
@@ -82,6 +91,8 @@ CHANGELOG                                           *easydigraph-CHANGELOG*
     
     The Script Author is Rykka(Rykka10(at)gmail.com)
     This Script is under MIT License.
+" V 0.2
+"  DONE: add vmap for visual mode.
 
 " V 0.1: initial commit
 " FIXED: wrong position with multi words motion
