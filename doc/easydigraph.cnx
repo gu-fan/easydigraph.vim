@@ -23,42 +23,40 @@
 ==============================================================================
 INTRO                                               *easydigraph-intro*
 
-    *EasyDigraph* makes input special characters with |:digraph| easier.
+    *EasyDigraph* 使得用|:digraph|输入特殊字符更加轻松。
     
-    Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
-everytime when input the digraphs.
-    With EasyDigraph, you can use |:EasyDigraph| with motion to convert characters to 
-digraphs.
+    一般来说，你需要使用i_<Ctrl-K>来输入二合字母。但是每次输入都需要按键。
+    用EasyDigraph，你可以使用|:EasyDigraph| 加上{motion} 来转换二合字母。
 
-    Default mapping is '<leader>bb'
-    You can remap it by changing |g:EasyDigraph_nmap|
-    Default motion support is 'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    默认映射为'<leader>bb'
+    可以使用|g:EasyDigraph_nmap|重新定义。
+    默认动作支持'w\b\e\iw\aw\j\k\vj\vk\h\l'
     
-    For example:
-    <leader>bbaW on 'a*b*c*d*e*' will convert it to Greek 'αβξδε'
-    <leader>bbaw on 'kakikukeko' will convert it to Hiragana 'かきくけこ'
-    <leader>bbaW on '(S8S+S3S)S' will convert it to SuperScript '⁽⁸⁺³⁾'
-    <leader>bbaW on '(s8s+s3s)s' will convert it to SubScript '₍₈₊₃₎'
+    例如:
+    <leader>bbaW 在 'a*b*c*d*e*' 上将转化为 Greek 'αβξδε'
+    <leader>bbaw 在 'kakikukeko' 上将转化为 Hiragana 'かきくけこ'
+    <leader>bbaW 在 '(S8S+S3S)S' 上将转化为 SuperScript '⁽⁸⁺³⁾'
+    <leader>bbaW 在 '(s8s+s3s)s' 上将转化为 SubScript '₍₈₊₃₎'
 
-    And it will automatically igonre converted characters.
-    That is, It will only convert the characters between ASCII 33~126
-    so press shortcut on 'αβξδε' will make no change on it.
+    同时它将自动忽略转化过的字符,
+    意即只会转化ASCII 33～126之间的字符。
+    即，在 'αβξδε' 上按键将不会使其产生变化。
     
-    There is also a hotkey in insert mode.
-    it will change the current WORD.
-    Default mapping is '<c-x><c-b>'
-    You can remap it by changing |g:EasyDigraph_imap|
+    同时，还有一个插入模式下的快捷键。
+    它将改变当前的WORD。
+    默认映射为'<c-x><c-b>'
+    可以使用|g:EasyDigraph_imap|重新定义
     
-    looking at |:digraph| and |digraphs-default| for digraph details.
+    查看 |:digraph| 和 |digraphs-default| 以了解更多。
 
-    You can post issues at https://github.com/Rykka/easydigraph.vim/
+    有问题请到发布到 https://github.com/Rykka/easydigraph.vim/ 
     
 ==============================================================================
 INSTALL                                             *easydigraph-install*
     
-    Extract from the tar.gz and put it in your vimfiles folder.
-    
-    You can always get the latest version of EasyDigraph at 
+    从tar.gz文件中解压缩到vimfiles文件夹。   
+
+    获取最新版本
     https://github.com/Rykka/easydigraph.vim/
     
 ==============================================================================
@@ -66,16 +64,16 @@ OPTION                                              *easydigraph-option*
 
     :EasyDigraph                                    *:EasyDigraph*
     EasyDigraph with motion.
-    Default motion support is 'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    默认动作支持 'w\b\e\iw\aw\j\k\vj\vk\h\l'
     
     g:EasyDigraph_imap                              *g:EasyDigraph_imap*
-    the mapping of ':EasyDigraph<CR>aW' in insert mode
-    default is "<c-x><c-b>"
+    ':EasyDigraph<CR>aW' 插入模式下的映射
+    默认为 "<c-x><c-b>"
 
     g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
-    the mapping of :EasyDigraph in normal mode
-    default is "<leader>bb"
-    you can also change it by remapping ":EasyDigraph"
+    :EasyDigraph 普通模式下的映射
+    默认为 "<leader>bb"
+    也可通过重定义 ":EasyDigraph"
     
 ==============================================================================
 CHANGELOG                                           *easydigraph-CHANGELOG*
@@ -93,4 +91,4 @@ CHANGELOG                                           *easydigraph-CHANGELOG*
 "        but it's still the last character of line
 " FIXED: deleting the word not in the end will change the cursor pos
 " FIXED: imap only can be used in the end of line
-" FIXED: imap if not in the end of line , it should shift right one pace.
+
