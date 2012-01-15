@@ -3,9 +3,9 @@
 **EasyDigraph** is for input special characters with |:digraph| easier.
     
     Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
-everytime when input the digraphs.
-    With EasyDigraph, you can use |:EasyDigraph| to convert characters to 
-digraphs.
+    everytime when input the digraphs.
+    With EasyDigraph, you can use |:EasyDigraph| with motion to convert
+    characters to digraphs.
 
     Default mapping is '<leader>bb'
     You can remap it by changing |g:EasyDigraph_nmap|
@@ -28,4 +28,4 @@ digraphs.
     
     looking at |:digraph| and |digraph-default| for digraph details.
 
-    You can post issues at https://github.com/Rykka/EasyDigraph/
+You can post issues at https://github.com/Rykka/EasyDigraph/

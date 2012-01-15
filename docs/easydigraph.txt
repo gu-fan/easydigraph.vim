@@ -1,0 +1,96 @@
+*easydigraph.txt*           EasyDigraph      Easier input Chars with digraph
+
+
+     ______                _____  _                       _        ~
+    |  ____|              |  __ \(_)                     | |       ~
+    | |__   __ _ ___ _   _| |  | |_  __ _ _ __ __ _ _ __ | |__     ~
+    |  __| / _` / __| | | | |  | | |/ _` | '__/ _` | '_ \| '_ \    ~
+    | |___| (_| \__ \ |_| | |__| | | (_| | | | (_| | |_) | | | |   ~
+    |______\__,_|___/\__, |_____/|_|\__, |_|  \__,_| .__/|_| |_|   ~
+                      __/ |          __/ |         | |             ~
+                     |___/          |___/          |_|             ~
+
+                          Version: 0.1
+
+==============================================================================
+
+ CONTENTS                               *easydigraph-contents*
+
+ 1. Intro                               |easydigraph-intro|
+ 2. Install                             |easydigraph-install|
+ 3. Option                              |easydigraph-option|
+ 4. Changelog                           |easydigraph-changelog|
+==============================================================================
+INTRO                                               *easydigraph-intro*
+
+    *EasyDigraph* is for input special characters with |:digraph| easier.
+    
+    Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
+everytime when input the digraphs.
+    With EasyDigraph, you can use |:EasyDigraph| with motion to convert characters to 
+digraphs.
+
+    Default mapping is '<leader>bb'
+    You can remap it by changing |g:EasyDigraph_nmap|
+    Default motion support is 'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    
+    For example:
+    <leader>bbaW on 'a*b*c*d*e*' will convert it to Greek 'αβξδε'
+    <leader>bbaw on 'kakikukeko' will convert it to Hiragana 'かきくけこ'
+    <leader>bbaW on '(S8S+S3S)S' will convert it to SuperScript '⁽⁸⁺³⁾'
+    <leader>bbaW on '(s8s+s3s)s' will convert it to SubScript '₍₈₊₃₎'
+
+    And it will automatically igonre converted characters.
+    That is, It will only convert the characters between ASCII 33~127
+    so press shortcut on 'αβξδε' will make no change on it.
+    
+    There is also a hotkey in insert mode.
+    it will change the current WORD.
+    Default mapping is '<c-x><c-b>'
+    You can remap it by changing |g:EasyDigraph_imap|
+    
+    looking at |:digraph| and |digraph-default| for digraph details.
+
+    You can post issues at https://github.com/Rykka/easydigraph.vim/
+    
+==============================================================================
+INSTALL                                             *easydigraph-install*
+    
+    Extract from the tar.gz and put it in your vimfiles folder.
+    
+    You can always get the latest version of EasyDigraph at 
+    https://github.com/Rykka/easydigraph.vim/
+    
+==============================================================================
+OPTION                                              *easydigraph-option*
+
+    :EasyDigraph                                    *:EasyDigraph*
+    EasyDigraph with motion.
+    Default motion support is 'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    
+    g:EasyDigraph_imap                              *g:EasyDigraph_imap*
+    the mapping of :EasyDigraph{aW} in insert mode
+    default is "<c-x><c-b>"
+
+    g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
+    the mapping of :EasyDigraph in normal mode
+    default is "<leader>bb"
+    you can also change it by remapping ":EasyDigraph"
+    
+==============================================================================
+CHANGELOG                                           *easydigraph-CHANGELOG*
+    
+    The Script Author is Rykka(Rykka10(at)gmail.com)
+    This Script is under MIT License.
+
+" V 0.1: initial commit
+" FIXED: wrong position with multi words motion
+" FIXED: some char reappended
+" FIXED: even if it's not a whitespace should be change with 'word' motion
+" FIXED: if it's the only word of the line. still wrong pos.
+" FIXED: if have have ' <eol>' after word,
+"        diW will put cursor at the last space not the previous one.
+"        but it's still the last character of line
+" FIXED: deleting the word not in the end will change the cursor pos
+" FIXED: imap only can be used in the end of line
+" FIXED: imap if not in the end of line , it should shift right one pace.
