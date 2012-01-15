@@ -73,7 +73,7 @@ OPTION                                              *easydigraph-option*
     g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
     :EasyDigraph 普通模式下的映射
     默认为 "<leader>bb"
-    也可通过重定义 ":EasyDigraph"
+    也可通过重定义 ":EasyDigraph"来改变。
     
 ==============================================================================
 CHANGELOG                                           *easydigraph-CHANGELOG*
