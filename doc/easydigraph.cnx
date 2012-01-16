@@ -58,6 +58,9 @@ INTRO                                               *easydigraph-intro*
 
     有问题请到发布到 https://github.com/Rykka/easydigraph.vim/ 
 
+    这里有一篇粗略整理了vim digraphs的特殊字符的文章
+    http://rykka.is-programmer.com/posts/31752 (Chinese) 
+
 ==============================================================================
 INSTALL                                             *easydigraph-install*
     
