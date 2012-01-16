@@ -36,3 +36,7 @@
 
 You can post issues at https://github.com/Rykka/easydigraph.vim/
 
+There is an article which have classified the vim digraphs roughly at
+http://rykka.is-programmer.com/posts/31752 (Chinese)
+
+

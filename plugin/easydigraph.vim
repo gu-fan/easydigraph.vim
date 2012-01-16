@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Script: EasyDigraph
 "    File: plugin/easydigraph.vim
-" Summary: input special characters with digraph easier
+" Summary: input special characters easier (+digraph).
 "  Author: Rykka <Rykka10(at)gmail.com>
 " Last Update: 2012-01-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
