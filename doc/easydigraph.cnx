@@ -26,8 +26,8 @@ INTRO                                               *easydigraph-intro*
     *EasyDigraph* 使得输入特殊字符更加轻松(+digraphs)。
     
     使用|:digraphs|，你可以用i_<Ctrl-K>来输入特殊字符。
-    但是每次输入都需要按键。
-    用EasyDigraph，你可以使用快捷键加上{motion}来转换特殊字符。
+    但是输入每个特殊字符时都需要按键。
+    使用EasyDigraph，你可以用快捷键加上{motion}来方便转换特殊字符。
 
     普通模式下默认映射为'<leader>bb'
     可以使用|g:EasyDigraph_nmap|重新定义。
