@@ -31,6 +31,7 @@ function! s:getchar()
     let c = getchar()
     if c =~ '^\d\+$'
         let c = nr2char(c)
+        echon c
     endif
     return c
 endfunction
@@ -43,15 +44,13 @@ function! s:inputtarget()
     if c =~ 'i\|a\|v'
         let c .= s:getchar()
     endif
-    if c =~ "\<Esc>\|\<C-C>\|\0"
+    if c =~ '\|\|<BS>\|<Home>\|'
         return ""
     else
         return c
     endif
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" XXX: if the string length is too long , the returned one will mixed with
-"      origin strings
 function! s:digraph(chars)
     let s = ""
     " the string to keep undigraphed part
@@ -63,7 +62,11 @@ function! s:digraph(chars)
             let s2 = s:wstrpart(cs, 1, 1)
             if s2 =~ '[[:graph:]]'
                 " using c_<c-k> as no internal digraph output functions
-                silent exec "normal! :let s .= '\<c-k>".s1.s2."'\<cr>"
+                try
+                    silent exec "normal! :let s .= '\<c-k>".s1.s2."'\<cr>"
+                catch /^Vim\%((\a\+)\)\=:E/
+                    let s .= s1.s2
+                endtry
                 let cs = s:wstrpart(cs, 2)
             else
                 let s .= s1.s2
@@ -77,67 +80,37 @@ function! s:digraph(chars)
     return s
 endfunction
 
-" FIXED: wrong position with multi words motion
-" FIXED: some char reappended
-" XXX: sometimes iw may get wrong position
-function! s:read_motion(m)
-    " FIXED: if it's the only word of the line. still wrong pos.
-    " FIXED: if have have ' <eol>' after word,
-    "        diW will put cursor at the last space not the previous one.
-    "        but it's still the last character of line
-    let l = getline('.')
-    let w1 = l[col('$') - 1]
-    let w2 = l[col('$') - 2]
-    " FIXED: even if it's not a whitespace should be change with 'word' motion
-    let c1 = l[col('.') - 1 : ]
-    if (w1 == " " && w2 != " " )|| (a:m=~'w\|e' && c1 !~ '^\k\+$' )
-        let w = 1
-    else
-        let w = 0
+function! s:read_motion(mode)
+    if a:mode == "n"
+        echohl WarningMsg
+        echo "Input motion:"
+        echohl Normal
+        let m = s:inputtarget()
+        if m == ""
+            echon "Esacped motion."
+            return -1
+        endif
+        exec "normal! v".m."\"zy"
+    elseif a:mode =="v"
+        exec "normal! gv\"zy"
+    elseif a:mode =="i"
+        "back one WORD to get last WORD changed 
+        exec "normal! BvaW\"zy"
     endif
 
-    " if ' ' under cursor, left move one word for deleting
-    if l[col('.')-1] =~ '\s'
-        exec 'normal! b'
-    endif
-
-    exec "normal! \"zd".a:m
     let @z = s:digraph(@z)
-
-    " FIXED: deleting the word not in the end will change the cursor pos
-    if col('.') == col('$')-1 && ( ( a:m =~? '^\d*w$')
-        \ || ( a:m =~? 'e' && w == 0 )
-        \ || ( a:m =~? 'iw' && w == 0 )
-        \ || ( a:m =~? 'aw' ) )
-        exec "normal! \"zp"
-    else
-        exec "normal! \"zP"
+    
+    let p = &paste
+    set paste
+    exec "normal! gvc\<c-r>z"
+    if p == 0
+        set nopaste
     endif
-endfunction
-
-" XXX: if multiline and select the eol of last line, will make 
-"      the first insert line start with a new line.
-function! s:easy_digraph_v()
-    exec "normal! gv\"zd"
-    let @z = s:digraph(@z)
-    if col('.') == col('$')-1
-        exec "normal! \"zp"
-    else
-        exec "normal! \"zP"
-    endif
-endfunction
-function! s:easy_digraph()
-    let m = s:inputtarget()
-    if m == ""
-        return -1
-    elseif m !~? '^\d*\(w\|aw\|iw\|vj\|vk\|b\|e\|l\|h\|j\|k\)$'
-        let m = 'aW'
-    endif
-    call s:read_motion(m)
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-command! -nargs=0  EasyDigraph call <SID>easy_digraph()
-command! -nargs=0  EasyDigraphV call <SID>easy_digraph_v()
+command! -nargs=0  EasyDigraph call <SID>read_motion("n")
+command! -nargs=0  EasyDigraphV call <SID>read_motion("v")
+command! -nargs=0  EasyDigraphI call <SID>read_motion("i")
 
 if !exists("g:EasyDigraph_imap")
     let g:EasyDigraph_imap = "<c-x><c-b>"
@@ -148,15 +121,16 @@ endif
 if !exists("g:EasyDigraph_vmap")
     let g:EasyDigraph_vmap = "<c-b>"
 endif
-if !hasmapto("EasyDigraph")
-    silent! exec "nmap <unique> <silent> ".g:EasyDigraph_nmap." :EasyDigraph<CR>"
-endif
-" FIXED: imap only can be used in the end of line
-" FIXED: imap if not in the end of line , it should shift right one pace.
-silent! exec "imap <unique> <silent> ".g:EasyDigraph_imap." <c-o>:EasyDigraph<CR>aW"
 
-if !hasmapto("EasyDigraphV")
-    silent! exec "vmap <unique> <silent> ".g:EasyDigraph_vmap." :EasyDigraphV<CR>"
+if !hasmapto("EasyDigraph")
+    silent! exec "nmap <silent> ".g:EasyDigraph_nmap." :EasyDigraph<CR>"
 endif
+if !hasmapto("EasyDigraphI")
+    silent! exec "imap <silent> ".g:EasyDigraph_imap." <c-o>:EasyDigraphI<CR>"
+endif
+if !hasmapto("EasyDigraphV")
+    silent! exec "vmap <silent> ".g:EasyDigraph_vmap." :EasyDigraphV<CR>"
+endif
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

@@ -23,32 +23,34 @@
 ==============================================================================
 INTRO                                               *easydigraph-intro*
 
-    *EasyDigraph* 使得用|:digraph|输入特殊字符更加轻松。
+    *EasyDigraph* 使得输入特殊字符更加轻松(+digraphs)。
     
-    一般来说，你需要使用i_<Ctrl-K>来输入二合字母。但是每次输入都需要按键。
-    用EasyDigraph，你可以使用|:EasyDigraph| 加上{motion} 来转换二合字母。
+    使用|:digraphs|，你可以用i_<Ctrl-K>来输入特殊字符。
+    但是每次输入都需要按键。
+    用EasyDigraph，你可以使用快捷键加上{motion}来转换特殊字符。
 
-    默认映射为'<leader>bb'
+    普通模式下默认映射为'<leader>bb'
     可以使用|g:EasyDigraph_nmap|重新定义。
-    默认动作支持'w\b\e\iw\aw\j\k\vj\vk\h\l'
     
     例如:
-    <leader>bbaW 在 'a*b*c*d*e*' 上将转化为 Greek 'αβξδε'
-    <leader>bbaw 在 'kakikukeko' 上将转化为 Hiragana 'かきくけこ'
-    <leader>bbaW 在 '(S8S+S3S)S' 上将转化为 SuperScript '⁽⁸⁺³⁾'
-    <leader>bbaW 在 '(s8s+s3s)s' 上将转化为 SubScript '₍₈₊₃₎'
+    <leader>bbaW 转化 'a*b*c*d*e*' 为 希腊文 'αβξδε'
+    <leader>bb2w 转化 'o5hayou5 gozai5masu' 为 平假名 'おはよう ございます'
+    <leader>bbi{ 转化 '{(S8S+S3SnS)S}' 为 SuperScript {⁽⁸⁺³ⁿ⁾}' 
+    <leader>bbit 转化 '<p>\n3S >* \n2S </p>' 为 '<p>n³≫ n² </p>'
 
-    同时它将自动忽略转化过的字符,
-    意即只会转化ASCII 33～126之间的字符。
+    EasyDigraph将自动忽略转化过的字符,
+    即只会转化ASCII 33～126之间的字符。
     即，在 'αβξδε' 上按键将不会使其产生变化。
+
+    并且当转化时，vim digraph将忽略 '\' 以及其后的字符，
+    即 '\1\+\2' 将变为 '1+2'
+    唯一的例外是 '/'。（至 vim7.3）
     
-    同时，还有一个插入模式下的快捷键。
-    功能为改变当前的WORD。
+    一个插入模式下的快捷键,改变当前的WORD。
     默认映射为'<c-x><c-b>'
     可以使用|g:EasyDigraph_imap|重新定义
     
-    一个可视模式下的快捷键。
-    功能为改变当前的高亮区域。
+    一个可视模式下的快捷键，改变当前的高亮区域。
     默认映射为'<c-b>'
     可以使用|g:EasyDigraph_vmap|重新定义
 
@@ -56,10 +58,6 @@ INTRO                                               *easydigraph-intro*
 
     有问题请到发布到 https://github.com/Rykka/easydigraph.vim/ 
 
-    已知问题：
-        1. 多行转换可能会造成第一行错位。
-        2. 多行转换，有时返回的字符串会和原字符串混淆。
-    
 ==============================================================================
 INSTALL                                             *easydigraph-install*
     
@@ -73,26 +71,30 @@ OPTION                                              *easydigraph-option*
 
     :EasyDigraph                                    *:EasyDigraph*
     EasyDigraph with motion.
-    默认动作支持 'w\b\e\iw\aw\j\k\vj\vk\h\l'
     
+    g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
+    ':EasyDigraph<CR>' 普通模式下的映射
+    默认为 "<leader>bb"
+
     g:EasyDigraph_imap                              *g:EasyDigraph_imap*
-    ':EasyDigraph<CR>aW' 插入模式下的映射
+    '<c-o>:EasyDigraphI<CR>' 插入模式下的映射
     默认为 "<c-x><c-b>"
 
     g:EasyDigraph_vmap                              *g:EasyDigraph_vmap*
     ':EasyDigraphV<CR>' 可视模式下的映射
     默认为 "<c-b>"
-
-    g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
-    :EasyDigraph 普通模式下的映射
-    默认为 "<leader>bb"
-    也可通过重定义 ":EasyDigraph"来改变。
     
 ==============================================================================
 CHANGELOG                                           *easydigraph-CHANGELOG*
     
     The Script Author is Rykka(Rykka10(at)gmail.com)
     This Script is under MIT License.
+
+" V 0.3
+"  DONE: support all motions. 
+
+" V 0.2
+"  DONE: add vmap for visual mode.
 
 " V 0.1: initial commit
 " FIXED: wrong position with multi words motion

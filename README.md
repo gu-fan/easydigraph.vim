@@ -1,42 +1,38 @@
 ## Intro ##
 
-**EasyDigraph** makes input special characters with |:digraph| easier.
+**EasyDigraph** makes inputting special characters easier (+digraphs).
     
-    Normally, You can use i_<Ctrl-K> to input a digraph. but have to press it 
-    everytime when input the digraphs.
-    With EasyDigraph, you can use |:EasyDigraph| with motion to convert
-    characters to digraphs.
+    With |:digraphs|, You can use i_<Ctrl-K> to input a special character. 
+    but have to press it everytime.
+    With EasyDigraph, you can use mapping with {motion} to convert
+    to special characters.
 
-    Default mapping is '<leader>bb'
+    Default mapping in Normal Mode is '<leader>bb'.
     You can remap it by changing |g:EasyDigraph_nmap|
-    Default motion support is 'w\b\e\iw\aw\j\k\vj\vk\h\l'
     
     For example:
-    <leader>bbaW on 'a*b*c*d*e*' will convert it to Greek 'αβξδε'
-    <leader>bbaw on 'kakikukeko' will convert it to Hiragana 'かきくけこ'
-    <leader>bbaW on '(S8S+S3S)S' will convert it to SuperScript '⁽⁸⁺³⁾'
-    <leader>bbaW on '(s8s+s3s)s' will convert it to SubScript '₍₈₊₃₎'
+    <leader>bbaW on 'a*b*c*d*e*' to Greek 'αβξδε'
+    <leader>bb2w on 'o5hayou5 gozai5masu' to Hiragana 'おはよう ございます'
+    <leader>bbi{ in '{(S8S+S3SnS)S}' to SuperScript {⁽⁸⁺³ⁿ⁾}' 
+    <leader>bbit in '<p>\n3S >* \n2S </p>' to '<p>n³≫ n² </p>'
 
-    And it will automatically igonre converted characters.
-    That is, It will only convert the characters between ASCII 33~126
+    EasyDigraph will automatically igonre converted characters.
+    That is, only convert the characters between ASCII 33~126
     so press shortcut on 'αβξδε' will make no change on it.
     
-    There is also a mapping in insert mode.
-    it's function is change the current WORD.
+    And when Converting, Vim digraph will ignore '\' with char after.
+    so '\1\+\2' will became '1+2'. 
+    The only exception is '/'. (Until vim 7.3 )
+    
+    A Insert Mode mapping to change the current WORD.
     Default mapping is '<c-x><c-b>'
     You can remap it by changing |g:EasyDigraph_imap|
     
-    A Mapping in Visual Mode.
-    Function is change current highlight area.
+    A Visual Mode mapping to change current highlight area.
     Default mapping is '<c-b>'
     You can remap it by changing |g:EasyDigraph_vmap|
-
     
-looking at |:digraph| and |digraphs-default| for digraph details.
+    looking at |:digraph| and |digraphs-default| for digraph details.
 
 You can post issues at https://github.com/Rykka/easydigraph.vim/
 
-Know Issues:
-
-    1. MultiLine action may make the first in a wrong place. 
-    2. Multiline action may mix the returned string with origin ones.
