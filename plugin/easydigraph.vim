@@ -3,7 +3,7 @@
 "    File: plugin/easydigraph.vim
 " Summary: input special characters easier (+digraph).
 "  Author: Rykka <Rykka10(at)gmail.com>
-" Last Update: 2012-01-15
+" Last Update: 2012-04-13
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:save_cpo = &cpo
 set cpo&vim
@@ -12,31 +12,44 @@ if !has("digraphs")
     finish
 endif
 
-function! s:wstrpart(str, idx,...)
+function! s:wstridx(str,needle,...) "{{{
+    if exists("a:1")
+        let wstart = byteidx(a:str,a:1)
+    else
+        let wstart = 0
+    endif
+    let i = 0
+    for c in split(a:str,'\zs') 
+        if  c == a:needle
+            return i
+        endif
+        let i += 1
+    endfor
+    return -1
+endfunction "}}}
+function! s:wstrpart(str, idx,...) "{{{
    " using strchars() and byteidx() to deal with multibyte chars
     let widx = byteidx(a:str,a:idx)
     if widx == -1
         return ""
     endif
     if exists("a:1")
-        let wlen = a:1
-        let wend = byteidx(a:str,a:idx+wlen)
-        return strpart(a:str, widx, wend-widx)
+        return strpart(a:str, widx, byteidx(a:str,a:idx+a:1)-widx)
     else
         return strpart(a:str, widx)
     endif
-endfunction
+endfunction "}}}
 
-function! s:getchar()
+function! s:getchar() "{{{
     let c = getchar()
     if c =~ '^\d\+$'
         let c = nr2char(c)
         echon c
     endif
     return c
-endfunction
+endfunction "}}}
 
-function! s:inputtarget()
+function! s:inputtarget() "{{{
     let c = s:getchar()
     while c =~ '^\d\+$'
         let c .= s:getchar()
@@ -49,7 +62,7 @@ function! s:inputtarget()
     else
         return c
     endif
-endfunction
+endfunction "}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:digraph(chars)
     let s = ""
