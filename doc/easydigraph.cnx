@@ -33,7 +33,7 @@ INTRO                                               *easydigraph-intro*
     可以使用|g:EasyDigraph_nmap|重新定义。
     
     例如:
-    <leader>bbaW 转化 'a*b*c*d*e*' 为 希腊文 'αβξδε'
+    <leader>bbaW 转化 'a*b*g*d*e*' 为 希腊文 'αβγδε'
     <leader>bb2w 转化 'o5hayou5 gozai5masu' 为 平假名 'おはよう ございます'
     <leader>bbi{ 转化 '{(S8S+S3SnS)S}' 为 SuperScript {⁽⁸⁺³ⁿ⁾}' 
     <leader>bbit 转化 '<p>\n3S >* \n2S </p>' 为 '<p>n³≫ n² </p>'

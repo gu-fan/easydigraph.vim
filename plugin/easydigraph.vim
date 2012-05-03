@@ -3,7 +3,7 @@
 "    File: plugin/easydigraph.vim
 " Summary: input special characters easier (+digraph).
 "  Author: Rykka <Rykka10(at)gmail.com>
-" Last Update: 2012-04-13
+" Last Update: 2012-05-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:save_cpo = &cpo
 set cpo&vim

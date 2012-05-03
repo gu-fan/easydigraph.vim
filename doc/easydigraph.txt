@@ -83,7 +83,7 @@ OPTION                                              *easydigraph-option*
     mapping of '<c-o>:EasyDigraphI<CR>' in insert mode
     default is "<c-x><c-b>"
 
-    g:EasyDigraph_vmap                              *g:EasyDigraph_imap*
+    g:EasyDigraph_vmap                              *g:EasyDigraph_vmap*
     mapping of ':EasyDigraphV<CR>' in insert mode
     default is "<c-b>"
     
