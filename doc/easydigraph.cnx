@@ -23,36 +23,52 @@
 ==============================================================================
 INTRO                                               *easydigraph-intro*
 
-    *EasyDigraph* 使得输入特殊字符更加轻松(+digraphs)。
+    *EasyDigraph* 使输入特殊字符更加轻松。
     
-    使用|:digraphs|，你可以用i_<Ctrl-K>来输入特殊字符。
+    在正常情况下，通过|:digraphs|，可以使用i_<Ctrl-K>来输入特殊字符。
     但是输入每个特殊字符时都需要按键。
-    使用EasyDigraph，你可以用快捷键加上{motion}来方便转换特殊字符。
+    通过使用EasyDigraph，你可以用快捷键加上|motion|来方便转换特殊字符。
 
-    普通模式下默认映射为'<leader>bb'
-    可以使用|g:EasyDigraph_nmap|重新定义。
+    普通模式下默认映射为'<leader>bb' (可以使用|g:EasyDigraph_nmap|重新定义。)
+    然后可以通过{motion} 来转换一个特定区域。
     
     例如:
-    <leader>bbaW 转化 'a*b*g*d*e*' 为 希腊文 'αβγδε'
-    <leader>bb2w 转化 'o5hayou5 gozai5masu' 为 平假名 'おはよう ございます'
-    <leader>bbi{ 转化 '{(S8S+S3SnS)S}' 为 SuperScript {⁽⁸⁺³ⁿ⁾}' 
-    <leader>bbit 转化 '<p>\n3S >* \n2S </p>' 为 '<p>n³≫ n² </p>'
+    aW 转化 'a*b*g*d*e*' 为 希腊文 'αβγδε'
+    2w 转化 'o5hayou5 gozai5masu' 为 平假名 'おはよう ございます'
+    i{ 转化 '{(S8S+S3SnS)S}' 为 SuperScript {⁽⁸⁺³ⁿ⁾}' 
+    it 转化 '<p>\n3S >* \n2S </p>' 为 '<p>n³≫ n² </p>'
 
     EasyDigraph将自动忽略转化过的字符,
     即只会转化ASCII 33～126之间的字符。
     即，在 'αβξδε' 上按键将不会使其产生变化。
 
     并且当转化时，vim digraph将忽略 '\' 以及其后的字符，
-    即 '\1\+\2' 将变为 '1+2'
+    即 '\1\+\2' 将变为 '1+2' 
     唯一的例外是 '/'。（至 vim7.3）
     
-    一个插入模式下的快捷键,改变当前的WORD。
-    默认映射为'<c-x><c-b>'
-    可以使用|g:EasyDigraph_imap|重新定义
-    
-    一个可视模式下的快捷键，改变当前的高亮区域。
-    默认映射为'<c-b>'
-    可以使用|g:EasyDigraph_vmap|重新定义
+    同时拥有插入模式和可视模式下的快捷键。
+    可以使用|g:EasyDigraph_imap| , |g:EasyDigraph_vmap|重新定义
+
+    将 |g:EasyDigraph_subs| 和 |g:EasyDigraph_cpunc| 设为 1.
+    将定义更多的二合字母。 (默认为1)
+
+>
+    " subscripts and superscripts g:EasyDigraph_subs
+    `0 ⁰  `+ ⁺ ... ( 0-9 + - ( ) / ^ . , > < )
+    `a ᵃ  `A ᴬ ... ( a-z except q , Some of A-Z)
+    _0 ₀  _+ ₊ ... ( 0-9 + - ( ) / ^ )
+    _a ₐ  _e ₑ ... (a e h i k l m n o p r s t u v x)
+
+    and XO is defined to ⊕ (XOR)
+
+    " some chinese punctuations. g:EasyDigraph_cpunc
+    ,, ， ,. 。 ,! ！ ,? ？
+    " NOTE: some are already defined.
+    " bracket   : <+《  <' 「 <" 『 ("【 (I〖
+    " quotation : '6 ‘ '9 ’ "6 “ "9 ”
+
+    Chinese PinYin: v- ǖ   v' ǘ    v< ǚ    v` ǜ
+<
 
     查看 |:digraph| 和 |digraphs-default| 以了解更多。
 
@@ -76,22 +92,35 @@ OPTION                                              *easydigraph-option*
     EasyDigraph with motion.
     
     g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
+                                                    (default is "<leader>bb")
     ':EasyDigraph<CR>' 普通模式下的映射
-    默认为 "<leader>bb"
 
     g:EasyDigraph_imap                              *g:EasyDigraph_imap*
+                                                    (default is "<c-x><c-b>")
     '<c-o>:EasyDigraphI<CR>' 插入模式下的映射
-    默认为 "<c-x><c-b>"
+    将转换当前输入的词
 
     g:EasyDigraph_vmap                              *g:EasyDigraph_vmap*
+                                                    (default is "<c-b>")
     ':EasyDigraphV<CR>' 可视模式下的映射
-    默认为 "<c-b>"
+    将转换可视区域
     
+    g:EasyDigraph_subs                              *g:EasyDigraph_subs*
+                                                    (default:1)
+    设为1 ，启用预定义的superscripts/subscripts
+    
+    g:EasyDigraph_subs                              *g:EasyDigraph_cpunc*
+                                                    (default:1)
+    设为1 ，启用预定义的中文标点
+
 ==============================================================================
 CHANGELOG                                           *easydigraph-CHANGELOG*
     
     The Script Author is Rykka(Rykka10(at)gmail.com)
     This Script is under MIT License.
+
+" V 0.4
+"  DONE: add some predefined digraphs (subs/cpunc)
 
 " V 0.3
 "  DONE: support all motions. 
