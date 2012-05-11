@@ -15,7 +15,7 @@ Then you can input {motion} to change a specific area.
     
 For example:
 
-    aW on 'a*b*c*d*e*' to Greek 'αβξδε'
+    aW on 'a*b*c*d*e*' to Greek letter 'αβξδε'
     2w on 'o5hayou5 gozai5masu' to Hiragana 'おはよう ございます'
     i{ in '{(S8S+S3SnS)S}' to SuperScript {⁽⁸⁺³ⁿ⁾}' 
     it in '<p>\n3S >* \n2S </p>' to '<p>n³≫ n² </p>'
@@ -43,7 +43,7 @@ some more addition digraphs are defined. (default is 1)
     and XO is defined to ⊕ (XOR)
 
     " some chinese punctuations. g:EasyDigraph_cpunc
-    ,, ， ,. 。 ,! ！ ,? ？
+    " ,, ， ,.  。 ,! ！ ,? ？ ,( （ ,) ） ,$ ￥ ,^ …  ,_ — ,\  、 ,; ；
     " NOTE: some are already defined.
     " bracket   : <+《  <' 「 <" 『 ("【 (I〖
     " quotation : '6 ‘ '9 ’ "6 “ "9 ”

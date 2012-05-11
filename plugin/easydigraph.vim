@@ -3,7 +3,8 @@
 "    File: plugin/easydigraph.vim
 " Summary: input special characters easier.
 "  Author: Rykka <Rykka10(at)gmail.com>
-" Last Update: 2012-05-10
+" Version: 0.4
+" Last Update: 2012-05-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:save_cpo = &cpo
 set cpo&vim
@@ -123,7 +124,7 @@ endfunction "}}}
 command! -nargs=0  EasyDigraph call <SID>read_motion("n")
 command! -nargs=0  EasyDigraphV call <SID>read_motion("v")
 command! -nargs=0  EasyDigraphI call <SID>read_motion("i")
-
+"
 if !exists("g:EasyDigraph_imap")
     let g:EasyDigraph_imap = "<c-x><c-b>"
 endif
@@ -152,11 +153,11 @@ if g:EasyDigraph_cpunc == 1
     " for PINYIN: v- ǖ    v' ǘ    v< ǚ    v` ǜ
     dig v- 470 v' 472 v< 474 v` 476
     " NOTE: some are already defined.
-    " bracket   : <+《  <' 「 <" 『 ("【 (I〖
+    " bracket   : <+《 <'「 <"『 ("【 (I〖
     " quotation : '6 ‘ '9 ’ "6 “ "9 ”
-    " ,, ， ,.  。 ,! ！ ,? ？
-    dig ,, 65292 ,. 12290 ,! 65281 ,? 65311
-
+    " ,, ， ,.  。 ,! ！ ,? ？ ,( （ ,) ） ,$ ￥ ,^ …  ,_ — ,\  、 ,; ；
+    dig ,, 65292 ,. 12290 ,! 65281 ,? 65311 ,( 65288 ,) 65289 ,$ 65509
+    dig ,^ 8230  ,_ 8232  ,\ 12289 ,; 65307
 endif
 if !exists("g:EasyDigraph_subs")
     let g:EasyDigraph_subs = 1

@@ -67,7 +67,7 @@ INTRO                                               *easydigraph-intro*
     and XO is defined to ⊕ (XOR)
 
     " some chinese punctuations. g:EasyDigraph_cpunc
-    ,, ， ,. 。 ,! ！ ,? ？
+    " ,, ， ,.  。 ,! ！ ,? ？ ,( （ ,) ） ,$ ￥ ,^ …  ,_ — ,\  、 ,; ；
     " NOTE: some are already defined.
     " bracket   : <+《  <' 「 <" 『 ("【 (I〖
     " quotation : '6 ‘ '9 ’ "6 “ "9 ”
