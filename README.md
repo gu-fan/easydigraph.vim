@@ -45,7 +45,7 @@ some more addition digraphs are defined. (default is 1)
     " some chinese punctuations. g:EasyDigraph_cpunc
     " ,, ， ,.  。 ,! ！ ,? ？ ,( （ ,) ） ,$ ￥ ,^ …  ,_ — ,\  、 ,; ；
     " NOTE: some are already defined.
-    " bracket   : <+《  <' 「 <" 『 ("【 (I〖
+    " bracket   :  <+ 《 <' 「 <" 『 (" 【 (I 〖
     " quotation : '6 ‘ '9 ’ "6 “ "9 ”
 
     Chinese PinYin: v- ǖ   v' ǘ    v< ǚ    v` ǜ
