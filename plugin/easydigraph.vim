@@ -71,7 +71,7 @@ function! s:digraph(chars) "{{{
     let cs = a:chars
     while cs != ""
         let s1 = s:wstrpart(cs, 0, 1)
-        " [:graph:] is the same with [!-~] but faster.
+        " [:graph:] is the same with [!-~]
         if s1 =~ '[[:graph:]]'
             let s2 = s:wstrpart(cs, 1, 1)
             if s2 =~ '[[:graph:]]'
